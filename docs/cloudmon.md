@@ -79,11 +79,3 @@ The first deployment of **Cloudmon** will be done on [AppFog](http://appfog.com)
  * AWS deployment, with possibility of choosing between AWS Asia Southeast, AWS Europe West and AWS US East data centers.
  * Supports *cron jobs* via [node-cron](https://github.com/ncb000gt/node-cron): cron is used to trigger a report creation on the MASTER.
  * Works great with [emailjs](https://github.com/eleith/emailjs) that is used to email the resulting reports to the *administrator*.
-
-## Improvements, TODO
-
- * Scalability, monetization: an app can instantiate multiple MASTERs, one per user.
- * PROBEs have queues – stored in a database/KV Store – and are triggered by cronjob as well, e.g. every 15s a PROBE gets a test from the queue, runs it and sends the result back. Different queues, for QoS handling.
- * Web control panel, login with Twitter, schedule your tests, history+stats?
- * Deploy a complete setup to AppFog, get a few alpha testers.
- * If the monetization time comes, same setup straight on AWS. MASTERs will need a way of discover PROBEs.
