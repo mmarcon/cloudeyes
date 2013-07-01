@@ -79,3 +79,49 @@ The first deployment of **Cloudmon** will be done on [AppFog](http://appfog.com)
  * AWS deployment, with possibility of choosing between AWS Asia Southeast, AWS Europe West and AWS US East data centers.
  * Supports *cron jobs* via [node-cron](https://github.com/ncb000gt/node-cron): cron is used to trigger a report creation on the MASTER.
  * Works great with [emailjs](https://github.com/eleith/emailjs) that is used to email the resulting reports to the *administrator*.
+
+## Configuration
+PROBES are just deployed to nodes located in different regions with a minimal configuration – in fact the only thing they need is the key that is shared with a MASTER. PROBES remain idle until a MASTER sends a `run test` command.
+
+The MASTER is the active player. It can be deployed anywhere, as long as it is possible to reach it via a HTTP connection.
+
+MASTER and PROBES need to be configured with a pre-shared key: this way PROBES will only accept commands from a legitimate MASTER and the MASTER will accept only messages from legitimate PROBES. Keys are enforced at the *channel* level (`channel.js`).
+
+The best way to deploy nodes along with their configuration is to provide a `config.json` file in the root of the directory structure in the same way it was done in this repository. `config.json` looks like this:
+
+	{
+	    "key": "aaa-bbb-ccc-ddd-eee-fff",
+	    "hosts": [
+	        {
+	            "url": "http://beyondpasta.com",
+	            "selector": "#footer"
+	        },
+	        {
+	            "url": "http://marcon.me",
+	            "selector": "h2.resume-section"
+	        },
+	        {
+	            "url": "http://toys.marcon.me",
+	            "selector": ".monkey"
+	        }
+	    ],
+	    "probes": [
+	        {
+	            "id":"p0",
+	            "host": "localhost",
+	            "port": 3001
+	        },
+	        {
+	            "id":"p1",
+	            "host": "localhost",
+	            "port": 3002
+	        }
+	    ],
+	    "recipients": [
+	        "me@marcon.me"
+	    ]
+	}
+	
+Note that while this is a complete configuration and everything is required to bootstrap a MASTER node, **PROBES only need the** `key` **property**.
+
+All these messy manual steps will at some point hopefully go away and will be replaced with some sort of automated process.
