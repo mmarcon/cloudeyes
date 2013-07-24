@@ -1,1 +1,4 @@
 node_modules
+.tmp
+.sass-cache
+website/app/bower_components
