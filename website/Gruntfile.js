@@ -356,7 +356,7 @@ module.exports = function (grunt) {
         'autoprefixer',
         'concat',
         'cssmin',
-        'uglify',
+        // 'uglify',
         'copy:dist',
         'rev',
         'usemin'
@@ -364,7 +364,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', [
         'jshint',
-        'test',
+        // 'test',
         'build'
     ]);
 };
