@@ -18,6 +18,15 @@ module.exports = function(grunt) {
                 options: {
                     stdout: true
                 }
+            },
+            websitebuild: {
+                command: 'grunt',
+                options: {
+                    stdout: true,
+                    execOptions: {
+                        cwd: './website'
+                    }
+                }
             }
         }
     });
@@ -27,4 +36,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('test', 'jasmine_node');
     grunt.registerTask('website', 'shell:website');
+    grunt.registerTask('websitebuild', 'shell:websitebuild');
 };
