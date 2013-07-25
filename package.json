@@ -1,17 +1,33 @@
 {
-  "name": "cloudmon",
-  "version": "0.0.0",
-  "description": "Monitoring system in Node.js",
-  "main": "app.js",
+  "name": "cloudeyes",
+  "version": "0.0.1",
+  "description": "A personal monitoring service for the cloud that notifies you about the status of your websites.",
+  "homepage": "http://cloudey.es",
+  "keywords" : ["util", "server", "cloud", "monitoring"],
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt test"
   },
-  "repository": "",
-  "author": "Massimiliano Marcon",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mmarcon/cloudeyes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mmarcon/cloudeyes/issues"
+  },
+  "author": {
+    "name": "Massimiliano Marcon",
+    "email": "me@marcon.me",
+    "web": "http://marcon.me"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://thingsinjars.mit-license.org/"
+    }
+  ],
   "dependencies": {
     "connect": "~2.7.10",
     "request": "~2.21.0",
@@ -23,7 +39,7 @@
   },
   "devDependencies": {
     "jasmine-node": "1.10.2",
-    "mockery": "latest",
+    "mockery": "1.4.0",
     "grunt": "~0.4.1",
     "grunt-jasmine-node": "~0.1.0",
     "grunt-shell": "~0.3.1",
