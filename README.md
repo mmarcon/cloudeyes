@@ -1,6 +1,6 @@
-#Cloudmon
+#Cloudeyes
 
-Cloudmon is a simple distributed system to observe whether a host – typically a website – is reachable from different locations at the same time. This helps spotting issues related to DNS, CDN and with most other acronyms.
+Cloudeyes is a simple distributed system to observe whether a host – typically a website – is reachable from different locations at the same time. This helps spotting issues related to DNS, CDN and with most other acronyms.
 
 The rationale behind this little project is that I need to monitor a few websites that I own, I don't have the need for a professional (as in *that costs money*) service and finally I believe coding this kind of things can be fun.
 
@@ -73,7 +73,7 @@ Other protocols to handle communication between nodes (e.g. TCP, UDP) are not ye
 
 ## Deployment
 
-The first deployment of **Cloudmon** will be done on [AppFog](http://appfog.com). They have a great, forever free plan that has everything that is needed:
+The first deployment of **Cloudeyes** will be done on [AppFog](http://appfog.com). They have a great, forever free plan that has everything that is needed:
 
  * Free plan
  * AWS deployment, with possibility of choosing between AWS Asia Southeast, AWS Europe West and AWS US East data centers.
@@ -121,7 +121,7 @@ The best way to deploy nodes along with their configuration is to provide a `con
 	        "me@marcon.me"
 	    ]
 	}
-	
+
 Note that while this is a complete configuration and everything is required to bootstrap a MASTER node, **PROBES only need the** `key` **property**.
 
 All these messy manual steps will at some point hopefully go away and will be replaced with some sort of automated process.
