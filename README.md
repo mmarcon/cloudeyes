@@ -1,4 +1,7 @@
-#Cloudeyes
+
+[![Build Status](https://travis-ci.org/mmarcon/cloudeyes.png?branch=master)](https://travis-ci.org/mmarcon/cloudeyes)
+
+#Cloudeyes 
 
 Cloudeyes is a simple distributed system to observe whether a host – typically a website – is reachable from different locations at the same time. This helps spotting issues related to DNS, CDN and with most other acronyms.
 
