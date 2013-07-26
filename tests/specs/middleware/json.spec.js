@@ -1,5 +1,5 @@
 /*global describe, it, jasmine, beforeEach, expect*/
-var testutils = require('./testutils');
+var testutils = require('../testutils');
 
 var requireModule = testutils.requireLocalModule;
 
