@@ -1,10 +1,10 @@
+/*global describe, it, jasmine, beforeEach, afterEach, expect*/
 var mockery = require('mockery'),
     config = require('./config'),
-    path = require('path');
+    path = require('path'),
+    testutils = require('./testutils');
 
-function requireModule(module) {
-    return require(path.join(config.basePath, module));
-}
+var requireModule = testutils.requireLocalModule;
 
 describe('Channel', function(){
     describe('Non-HTTP Channels', function(){
@@ -277,7 +277,7 @@ describe('Channel', function(){
 
             var payload = {the: 'message'};
 
-            channelInstance.send(recipient, payload, 123)
+            channelInstance.send(recipient, payload, 123);
             expect(requestMock).toHaveBeenCalledWith({
                 uri: 'http://recipient.cloudey.es:80',
                 json: Message.message(payload, 'kick-ass-test', 123)
@@ -310,7 +310,7 @@ describe('Channel', function(){
 
             var payload = {the: 'command'};
 
-            channelInstance.sendCommand(recipient, payload, 123)
+            channelInstance.sendCommand(recipient, payload, 123);
             expect(requestMock).toHaveBeenCalledWith({
                 uri: 'http://recipient.cloudey.es:80',
                 json: Message.command(payload, 'kick-ass-test', 123)
@@ -357,7 +357,7 @@ describe('Channel', function(){
 
             channelInstance.on(ChannelEvents.ACK, onACK);
 
-            channelInstance.send(recipient, payload, 123)
+            channelInstance.send(recipient, payload, 123);
 
             expect(onACK).toHaveBeenCalledWith({
                 status: Message.status.OK,
@@ -407,7 +407,7 @@ describe('Channel', function(){
 
             channelInstance.on(ChannelEvents.NACK, onNACK);
 
-            channelInstance.send(recipient, payload, 123)
+            channelInstance.send(recipient, payload, 123);
 
             expect(onNACK).toHaveBeenCalledWith({
                 status: Message.status.OK,
@@ -429,7 +429,6 @@ describe('Channel', function(){
             });
 
             var channel = requireModule('lib/channel'),
-                Message = requireModule('lib/message'),
                 ChannelEvents = channel.Events;
 
             var channelInstance = channel.getChannel('HTTP', {
@@ -454,7 +453,7 @@ describe('Channel', function(){
 
             channelInstance.on(ChannelEvents.ERROR, onERROR);
 
-            channelInstance.send(recipient, payload, 123)
+            channelInstance.send(recipient, payload, 123);
 
             expect(onERROR).toHaveBeenCalledWith(null);
         });
@@ -499,7 +498,7 @@ describe('Channel', function(){
 
             channelInstance.on(ChannelEvents.ACK, onACK);
 
-            channelInstance.sendCommand(recipient, payload, 123)
+            channelInstance.sendCommand(recipient, payload, 123);
 
             expect(onACK).toHaveBeenCalledWith({
                 status: Message.status.OK,
@@ -549,7 +548,7 @@ describe('Channel', function(){
 
             channelInstance.on(ChannelEvents.NACK, onNACK);
 
-            channelInstance.sendCommand(recipient, payload, 123)
+            channelInstance.sendCommand(recipient, payload, 123);
 
             expect(onNACK).toHaveBeenCalledWith({
                 status: Message.status.OK,
@@ -571,7 +570,6 @@ describe('Channel', function(){
             });
 
             var channel = requireModule('lib/channel'),
-                Message = requireModule('lib/message'),
                 ChannelEvents = channel.Events;
 
             var channelInstance = channel.getChannel('HTTP', {
@@ -596,7 +594,7 @@ describe('Channel', function(){
 
             channelInstance.on(ChannelEvents.ERROR, onERROR);
 
-            channelInstance.sendCommand(recipient, payload, 123)
+            channelInstance.sendCommand(recipient, payload, 123);
 
             expect(onERROR).toHaveBeenCalledWith(null);
         });
