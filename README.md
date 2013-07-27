@@ -1,3 +1,4 @@
+-> ![logo](https://raw.github.com/mmarcon/cloudeyes/master/media/logo.png) <-
 
 [![Build Status](https://travis-ci.org/mmarcon/cloudeyes.png?branch=master)](https://travis-ci.org/mmarcon/cloudeyes)
 
@@ -8,6 +9,7 @@ Cloudeyes is a simple distributed system to observe whether a host – typically
 The rationale behind this little project is that I need to monitor a few websites that I own, I don't have the need for a professional (as in *that costs money*) service and finally I believe coding this kind of things can be fun.
 
 I want to be able to make sure one or more websites are reachable from different part of the world. Conveniently, there are several cloud providers and *PaaS* providers that allow users to pick where their application will be deployed. Amazon, for instance, has different datacenters to choose from for their AWS service.
+
 
 ##Architecture
 
