@@ -35,6 +35,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-shell');
 
     grunt.registerTask('test', 'jasmine_node');
-    grunt.registerTask('website', 'shell:website');
     grunt.registerTask('websitebuild', 'shell:websitebuild');
+    grunt.registerTask('websitedeploy', 'shell:website');
+    grunt.registerTask('website', ['websitebuild', 'websitedeploy']);
 };

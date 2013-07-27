@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Flamenco:300|Roboto+Slab:700,400);
+@import url(http://fonts.googleapis.com/css?family=Flamenco:300|Roboto+Slab:700,400|Oxygen:400,300);
 
 /*! normalize.css v2.1.2 | MIT License | git.io/normalize */
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
@@ -46,9 +46,9 @@ $themeSecondaryColor: tomato;
 
 body {
     background: #222;
-    font-family: 'Roboto Slab', sans-serif;
+    font-family: 'Oxygen', sans-serif;
     color: #fff;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 1.8rem;
 
     .container {
@@ -58,26 +58,29 @@ body {
         header {
             font-family: 'Flamenco', sans-serif;
             margin-bottom: 10rem;
+            background: #222;
 
-            .outer {
-                background: $themeMainColor url(../images/cloud.png) no-repeat 50% 35px;
+            .logo {
+                background: transparent url(../images/logo-white.png) no-repeat 50%;
+                background-size: cover;
                 width: 150px;
                 height: 150px;
-                border-radius: 50%;
-                position: relative;
-                z-index: 10;
-                margin: 20px auto;
+                margin: 80px auto 10px auto;
+                // border-radius: 50%;
+                // position: relative;
+                // z-index: 10;
+                // margin: 20px auto;
 
-                h1 {
-                    font-size: 24px;
-                    text-align: center;
-                    margin: 0;
-                    padding: 0;
-                    width: 150px;
-                    color: #fff;
-                    padding-top: 75px;
-                    font-weight: normal;
-                }
+
+            }
+
+            h1 {
+                font-size: 80px;
+                text-align: center;
+                margin: 0;
+                padding: 0;
+                color: #fff;
+                font-weight: normal;
             }
 
             h2 {
@@ -85,6 +88,17 @@ body {
                 text-align: center;
                 padding-top: 1rem;
                 font-weight: normal;
+            }
+
+            &.sticky {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+
+                .logo, h2 {
+                    display: none;
+                }
             }
         }
 
