@@ -1,4 +1,4 @@
--> ![logo](https://raw.github.com/mmarcon/cloudeyes/master/media/logo.png) <-
+![logo](https://raw.github.com/mmarcon/cloudeyes/master/media/logo.png)
 
 [![Build Status](https://travis-ci.org/mmarcon/cloudeyes.png?branch=master)](https://travis-ci.org/mmarcon/cloudeyes)
 
