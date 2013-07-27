@@ -43,9 +43,10 @@ html{font-size:62.5%}
 
 $themeMainColor: #00ced1;
 $themeSecondaryColor: tomato;
+$themeBackground: #222;
 
 body {
-    background: #222;
+    background: $themeBackground;
     font-family: 'Oxygen', sans-serif;
     color: #fff;
     font-weight: 300;
@@ -58,14 +59,14 @@ body {
         header {
             font-family: 'Flamenco', sans-serif;
             margin-bottom: 10rem;
-            background: #222;
+            background: $themeBackground;
 
             .logo {
                 background: transparent url(../images/logo-white.png) no-repeat 50%;
                 background-size: cover;
-                width: 150px;
-                height: 150px;
-                margin: 80px auto 10px auto;
+                width: 15rem;
+                height: 15rem;
+                margin: 8rem auto 1rem auto;
                 // border-radius: 50%;
                 // position: relative;
                 // z-index: 10;
@@ -75,7 +76,7 @@ body {
             }
 
             h1 {
-                font-size: 80px;
+                font-size: 8rem;
                 text-align: center;
                 margin: 0;
                 padding: 0;
@@ -89,14 +90,27 @@ body {
                 padding-top: 1rem;
                 font-weight: normal;
             }
+        }
 
-            &.sticky {
+        &.sticky-header {
+            margin-top: 50rem;
+
+            header {
                 position: fixed;
                 top: 0;
                 left: 0;
                 right: 0;
+                z-index: 10;
 
-                .logo, h2 {
+                box-shadow: 0 1px 6px transparentize(#111, .6);
+
+                .logo {
+                    width: 6rem;
+                    height: 6rem;
+                    margin: .5rem auto;
+                }
+
+                h1, h2 {
                     display: none;
                 }
             }
