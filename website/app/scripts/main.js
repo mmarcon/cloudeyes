@@ -1,4 +1,5 @@
 $(function(){
+    'use strict';
     var body = $('body'),
         container = $('.container');
     $(window).on('scroll', function(){
