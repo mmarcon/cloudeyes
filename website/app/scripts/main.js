@@ -1,9 +1,9 @@
 $(function(){
     'use strict';
-    var body = $('body'),
+    var w = $(window),
         container = $('.container');
-    $(window).on('scroll', function(){
-        if(body.scrollTop() >= 400) {
+    w.on('scroll', function(){
+        if(w.scrollTop() >= 400) {
             return container.addClass('sticky-header');
         }
         container.removeClass('sticky-header');
