@@ -39,6 +39,25 @@ button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
 textarea{overflow:auto;vertical-align:top}
 table{border-collapse:collapse;border-spacing:0}
 
+pre code{display:block;color:#333;background:#f8f8ff;padding:.5em;border-radius:3px;}
+pre .comment,pre .template_comment,pre .diff .header,pre .javadoc{color:#998;font-style:italic}
+pre .keyword,pre .css .rule .keyword,pre .winutils,pre .javascript .title,pre .nginx .title,pre .subst,pre .request,pre .status{color:#333;font-weight:700}
+pre .number,pre .hexcolor,pre .ruby .constant{color:#099}
+pre .string,pre .tag .value,pre .phpdoc,pre .tex .formula{color:#d14}
+pre .title,pre .id{color:#900;font-weight:700}
+pre .javascript .title,pre .lisp .title,pre .clojure .title,pre .subst{font-weight:400}
+pre .tag,pre .tag .title,pre .rules .property,pre .django .tag .keyword{color:navy;font-weight:400}
+pre .attribute,pre .variable,pre .lisp .body{color:teal}
+pre .regexp{color:#009926}
+pre .symbol,pre .ruby .symbol .string,pre .lisp .keyword,pre .tex .special,pre .prompt{color:#990073}
+pre .built_in,pre .lisp .title,pre .clojure .built_in{color:#0086b3}
+pre .preprocessor,pre .pi,pre .doctype,pre .shebang,pre .cdata{color:#999;font-weight:700}
+pre .deletion{background:#fdd}
+pre .addition{background:#dfd}
+pre .diff .change{background:#0086b3}
+pre .chunk{color:#aaa}
+pre .class .title,pre .haskell .type,pre .vhdl .literal,pre .tex .command,pre .class{color:#458;font-weight:700}
+
 html{font-size:62.5%}
 
 $themeMainColor: #00ced1;
@@ -51,6 +70,10 @@ body {
     color: #fff;
     font-weight: 300;
     font-size: 1.8rem;
+
+    pre {
+        font-size: 1.4rem;
+    }
 
     .container {
         max-width: 64rem;
@@ -135,7 +158,13 @@ body {
 
         &.sticky-header {
             margin-top: 50rem;
+        }
 
+        &.page {
+            margin-top: 7rem;
+        }
+
+        &.sticky-header, &.page {
             header {
                 position: fixed;
                 top: 0;
@@ -154,7 +183,7 @@ body {
 
                 @media(max-width:950px) {
                     .logo {
-                        display: none;
+                        margin: .5rem;
                     }
                 }
 
@@ -162,13 +191,6 @@ body {
                     display: none;
                 }
 
-                // ul {
-                //     position: absolute;
-                //     right: 1rem;
-                //     height: 7rem;
-                //     line-height: 7rem;
-                //     text-align: right;
-                // }
                 nav {
                     height: auto;
                     position: static;
@@ -186,15 +208,16 @@ body {
             }
         }
 
+        h3 {
+            font-family: 'Flamenco', sans-serif;
+            font-weight: normal;
+            text-transform: uppercase;
+            font-size: 3rem;
+        }
+
         section {
             margin-top: 5rem;
 
-            h3 {
-                font-family: 'Flamenco', sans-serif;
-                font-weight: normal;
-                text-transform: uppercase;
-                font-size: 3rem;
-            }
 
             .mc-field-group {
                 text-align: center;
