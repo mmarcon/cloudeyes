@@ -1,4 +1,4 @@
-/*global describe, it, expect, jasmine*/
+/*global describe, it, expect, jasmine, beforeEach, afterEach*/
 var mockery = require('mockery'),
     testutils = require('../testutils'),
     config = require('../config'),
@@ -7,7 +7,7 @@ var mockery = require('mockery'),
 describe('DOM Analizer', function(){
     var jsdomMock, Document;
     beforeEach(function(){
-        mockery.registerAllowable(path.join(config.basePath, 'lib/actions', 'dom-analizer'), true);
+        mockery.registerAllowable(path.join(config.basePath, 'lib/actions', 'dom-analyzer'), true);
 
         Document = {
             querySelectorAll: jasmine.createSpy('querySelectorAll')
@@ -31,23 +31,23 @@ describe('DOM Analizer', function(){
 
         Document.querySelectorAll.andReturn([]);
 
-        var DOMAnalizer = testutils.requireLocalModule('lib/actions/dom-analizer');
+        var DOMAnalyzer = testutils.requireLocalModule('lib/actions/dom-analyzer');
         var html = '<html><body></body></html>';
 
-        DOMAnalizer.analize({html: html, selector: 'body'});
+        DOMAnalyzer.analyze({html: html, selector: 'body'});
 
         expect(jsdomMock.jsdom).toHaveBeenCalledWith(html);
         expect(Document.querySelectorAll).toHaveBeenCalledWith('body');
     });
     it('Returns a rejected promise when selector does not match', function(){
-        var DOMAnalizer = testutils.requireLocalModule('lib/actions/dom-analizer');
+        var DOMAnalyzer = testutils.requireLocalModule('lib/actions/dom-analyzer');
         var html = '<html><body></body></html>';
         var targetObject = {
             html: html,
             selector: '.monkey'
         };
 
-        var promise = DOMAnalizer.analize(targetObject);
+        var promise = DOMAnalyzer.analyze(targetObject);
 
         expect(promise.isRejected()).toBe(true);
 
@@ -59,14 +59,14 @@ describe('DOM Analizer', function(){
         });
     });
     it('Returns a rejected promise when selector matches', function(){
-        var DOMAnalizer = testutils.requireLocalModule('lib/actions/dom-analizer');
+        var DOMAnalyzer = testutils.requireLocalModule('lib/actions/dom-analyzer');
         var html = '<html><body><div class="monkey"></div></body></html>';
         var targetObject = {
             html: html,
             selector: '.monkey'
         };
 
-        var promise = DOMAnalizer.analize(targetObject);
+        var promise = DOMAnalyzer.analyze(targetObject);
 
         expect(promise.isFulfilled()).toBe(true);
 
