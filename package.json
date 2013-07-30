@@ -3,7 +3,12 @@
   "version": "0.0.1",
   "description": "A personal monitoring service for the cloud that notifies you about the status of your websites.",
   "homepage": "http://cloudey.es",
-  "keywords" : ["util", "server", "cloud", "monitoring"],
+  "keywords": [
+    "util",
+    "server",
+    "cloud",
+    "monitoring"
+  ],
   "directories": {
     "doc": "docs"
   },
@@ -35,7 +40,8 @@
     "jsdom": "~0.6.5",
     "cron": "~1.0.1",
     "emailjs": "~0.3.4",
-    "ejs": "~0.8.4"
+    "ejs": "~0.8.4",
+    "q": "~0.9.6"
   },
   "devDependencies": {
     "jasmine-node": "1.10.2",
