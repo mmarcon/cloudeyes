@@ -82,7 +82,7 @@ describe('HTTP Analyzer', function(){
     });
 
     it('executes the analysis when chained', function(){
-        var Analyzer = testutils.requireLocalModule('lib/actions/analyzer');
+        var Action = testutils.requireLocalModule('lib/actions/action');
         mockery.registerMock('request', requestMock);
         mockery.enable({
             useCleanCache: true,
@@ -91,7 +91,7 @@ describe('HTTP Analyzer', function(){
 
         var HTTPAnalyzer = testutils.requireLocalModule('lib/actions/http-analyzer');
 
-        Analyzer.with({url: 'http://google.com'}).then(HTTPAnalyzer).then(function(){
+        Action.with({url: 'http://google.com'}).then(HTTPAnalyzer).then(function(){
             //Everything happens asyncronously
             //so it all ends here.
             expect(requestMock).toHaveBeenCalledWith({uri: 'http://google.com'}, jasmine.any(Function));

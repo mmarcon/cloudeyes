@@ -1,14 +1,14 @@
 /*global describe, it, expect, jasmine, beforeEach, afterEach*/
 var testutils = require('../testutils');
 
-describe('Analyzer', function(){
+describe('Action', function(){
     it('returns a fulfilled promise and calls then with the target object', function(){
-        var Analyzer = testutils.requireLocalModule('lib/actions/analyzer');
+        var Action = testutils.requireLocalModule('lib/actions/action');
         var targetObject = {
             foo: 'bar'
         };
 
-        var promise = Analyzer.with(targetObject);
+        var promise = Action.with(targetObject);
 
         promise.then(function(resultTargetObject){
             expect(resultTargetObject).toBe(targetObject);

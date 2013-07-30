@@ -76,14 +76,14 @@ describe('DOM Analyzer', function(){
     });
     it('executes the analysis when chained', function(){
         var DOMAnalyzer = testutils.requireLocalModule('lib/actions/dom-analyzer');
-        var Analyzer = testutils.requireLocalModule('lib/actions/analyzer');
+        var Action = testutils.requireLocalModule('lib/actions/action');
         var html = '<html><body><div class="monkey"></div></body></html>';
         var targetObject = {
             html: html,
             selector: '.monkey'
         };
 
-        var promise = Analyzer.with(targetObject).then(DOMAnalyzer);
+        var promise = Action.with(targetObject).then(DOMAnalyzer);
 
         promise.then(function(resultTargetObject){
             expect(resultTargetObject.matched).toBe(true);
