@@ -3,7 +3,7 @@ var Actions = require('../../lib/actions'),
     clc = require('cli-color'),
     Analyzer = Actions.Analyzer,
     HTTPAnalyzer = Actions.HTTPAnalyzer;
-    
+
 var BASE_URL = 'http://mock.isssues.com/';
 
 var tests = [
@@ -17,7 +17,7 @@ var testFn = function(test) {
     var targetObject = {
         url: BASE_URL + test.code
     };
-    Analyzer.with(targetObject).then(HTTPAnalyzer.analyze).then(function(o){
+    Analyzer.with(targetObject).then(HTTPAnalyzer).then(function(o){
         try {
             assert.equal(BASE_URL + test.code, targetObject.url);
             assert.equal(test.code, o.code);

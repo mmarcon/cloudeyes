@@ -35,7 +35,7 @@ describe('DOM Analyzer', function(){
         var DOMAnalyzer = testutils.requireLocalModule('lib/actions/dom-analyzer');
         var html = '<html><body></body></html>';
 
-        DOMAnalyzer.analyze({html: html, selector: 'body'});
+        DOMAnalyzer({html: html, selector: 'body'});
 
         expect(jsdomMock.jsdom).toHaveBeenCalledWith(html);
         expect(Document.querySelectorAll).toHaveBeenCalledWith('body');
@@ -48,7 +48,7 @@ describe('DOM Analyzer', function(){
             selector: '.monkey'
         };
 
-        var promise = DOMAnalyzer.analyze(targetObject);
+        var promise = DOMAnalyzer(targetObject);
 
         promise.then(function(){
             expect('should not').toBe('here');
@@ -65,7 +65,7 @@ describe('DOM Analyzer', function(){
             selector: '.monkey'
         };
 
-        var promise = DOMAnalyzer.analyze(targetObject);
+        var promise = DOMAnalyzer(targetObject);
 
         promise.then(function(resultTargetObject){
             expect(resultTargetObject.matched).toBe(true);
@@ -82,8 +82,8 @@ describe('DOM Analyzer', function(){
             html: html,
             selector: '.monkey'
         };
-        
-        var promise = Analyzer.with(targetObject).then(DOMAnalyzer.analyze);
+
+        var promise = Analyzer.with(targetObject).then(DOMAnalyzer);
 
         promise.then(function(resultTargetObject){
             expect(resultTargetObject.matched).toBe(true);

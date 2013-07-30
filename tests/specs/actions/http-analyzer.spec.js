@@ -26,25 +26,25 @@ describe('HTTP Analyzer', function(){
 
         var HTTPAnalyzer = testutils.requireLocalModule('lib/actions/http-analyzer');
 
-        HTTPAnalyzer.analyze({url: 'http://google.com'});
+        HTTPAnalyzer({url: 'http://google.com'});
 
         expect(requestMock).toHaveBeenCalledWith({uri: 'http://google.com'}, jasmine.any(Function));
     });
-    
+
     it('resolves the promise when request succeeds', function(){
         mockery.registerMock('request', requestMock);
         mockery.enable({
             useCleanCache: true,
             warnOnUnregistered: false
         });
-        
+
         requestMock.andCallFake(function(option, callback){
             callback(null, {statusCode: 200}, '<html><body></body></html>');
         });
 
         var HTTPAnalyzer = testutils.requireLocalModule('lib/actions/http-analyzer');
 
-        var promise = HTTPAnalyzer.analyze({url: 'http://google.com'});
+        var promise = HTTPAnalyzer({url: 'http://google.com'});
 
         promise.then(function(resultTargetObject){
             expect(resultTargetObject.code).toBe(200);
@@ -55,21 +55,21 @@ describe('HTTP Analyzer', function(){
             expect('should not').toBe('here');
         });
     });
-    
+
     it('rejects the promise when request succeeds', function(){
         mockery.registerMock('request', requestMock);
         mockery.enable({
             useCleanCache: true,
             warnOnUnregistered: false
         });
-        
+
         requestMock.andCallFake(function(option, callback){
             callback(true/*Just anything truthy, really*/);
         });
 
         var HTTPAnalyzer = testutils.requireLocalModule('lib/actions/http-analyzer');
 
-        var promise = HTTPAnalyzer.analyze({url: 'http://google.com'});
+        var promise = HTTPAnalyzer({url: 'http://google.com'});
 
         promise.then(function(){
             expect('should not').toBe('here');
@@ -80,7 +80,7 @@ describe('HTTP Analyzer', function(){
             expect(resultTargetObject.html).toBe(undefined);
         });
     });
-    
+
     it('executes the analysis when chained', function(){
         var Analyzer = testutils.requireLocalModule('lib/actions/analyzer');
         mockery.registerMock('request', requestMock);
@@ -90,8 +90,8 @@ describe('HTTP Analyzer', function(){
         });
 
         var HTTPAnalyzer = testutils.requireLocalModule('lib/actions/http-analyzer');
-        
-        Analyzer.with({url: 'http://google.com'}).then(HTTPAnalyzer.analyze).then(function(){
+
+        Analyzer.with({url: 'http://google.com'}).then(HTTPAnalyzer).then(function(){
             //Everything happens asyncronously
             //so it all ends here.
             expect(requestMock).toHaveBeenCalledWith({uri: 'http://google.com'}, jasmine.any(Function));
