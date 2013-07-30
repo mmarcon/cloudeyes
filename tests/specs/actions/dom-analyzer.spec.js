@@ -22,7 +22,7 @@ describe('DOM Analizer', function(){
         jsdomMock.jsdom.reset();
         Document.querySelectorAll.reset();
     });
-    it('Analizes the given piece of HTML', function(){
+    it('analizes the given piece of HTML', function(){
         mockery.registerMock('jsdom', jsdomMock);
         mockery.enable({
             useCleanCache: true,
@@ -39,7 +39,7 @@ describe('DOM Analizer', function(){
         expect(jsdomMock.jsdom).toHaveBeenCalledWith(html);
         expect(Document.querySelectorAll).toHaveBeenCalledWith('body');
     });
-    it('Returns a rejected promise when selector does not match', function(){
+    it('returns a rejected promise when selector does not match', function(){
         var DOMAnalyzer = testutils.requireLocalModule('lib/actions/dom-analyzer');
         var html = '<html><body></body></html>';
         var targetObject = {
@@ -49,8 +49,6 @@ describe('DOM Analizer', function(){
 
         var promise = DOMAnalyzer.analyze(targetObject);
 
-        expect(promise.isRejected()).toBe(true);
-
         promise.then(function(){
             expect('should not').toBe('here');
         });
@@ -58,7 +56,7 @@ describe('DOM Analizer', function(){
             expect(resultTargetObject.matched).toBe(false);
         });
     });
-    it('Returns a rejected promise when selector matches', function(){
+    it('returns a rejected promise when selector matches', function(){
         var DOMAnalyzer = testutils.requireLocalModule('lib/actions/dom-analyzer');
         var html = '<html><body><div class="monkey"></div></body></html>';
         var targetObject = {
@@ -68,7 +66,23 @@ describe('DOM Analizer', function(){
 
         var promise = DOMAnalyzer.analyze(targetObject);
 
-        expect(promise.isFulfilled()).toBe(true);
+        promise.then(function(resultTargetObject){
+            expect(resultTargetObject.matched).toBe(true);
+        });
+        promise.catch(function(){
+            expect('should not').toBe('here');
+        });
+    });
+    it('executes the analysis when chained', function(){
+        var DOMAnalyzer = testutils.requireLocalModule('lib/actions/dom-analyzer');
+        var Analyzer = testutils.requireLocalModule('lib/actions/analyzer');
+        var html = '<html><body><div class="monkey"></div></body></html>';
+        var targetObject = {
+            html: html,
+            selector: '.monkey'
+        };
+        
+        var promise = Analyzer.with(targetObject).then(DOMAnalyzer.analyze);
 
         promise.then(function(resultTargetObject){
             expect(resultTargetObject.matched).toBe(true);
