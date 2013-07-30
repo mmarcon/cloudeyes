@@ -1,14 +1,4 @@
-
 {
-    "globals": {
-        "jQuery": true,
-        "nokia": true,
-        "Zepto": true,
-        "tire": true
-    },
-
-    "browser": true,
-
     "curly": true,
     "eqeqeq": true,
     "forin": true,

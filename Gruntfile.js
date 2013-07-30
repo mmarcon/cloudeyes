@@ -28,13 +28,26 @@ module.exports = function(grunt) {
                     }
                 }
             }
+        },
+        jshint: {
+            options: {
+                jshintrc: '.jshintrc',
+                ignores: [
+                    'lib/master.js',
+                    'lib/node.js',
+                    'lib/probe.js',
+                    'lib/report.js'
+                ]
+            },
+            all: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js']
         }
     });
 
     grunt.loadNpmTasks('grunt-jasmine-node');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-shell');
 
-    grunt.registerTask('test', 'jasmine_node');
+    grunt.registerTask('test', ['jshint', 'jasmine_node']);
     grunt.registerTask('webbuild', 'shell:websitebuild');
     grunt.registerTask('webdeploy', 'shell:website');
 };
