@@ -4,7 +4,7 @@ var mockery = require('mockery'),
     config = require('../config'),
     path = require('path');
 
-describe('DOM Analizer', function(){
+describe('DOM Analyzer', function(){
     var jsdomMock, Document;
     beforeEach(function(){
         mockery.registerAllowable(path.join(config.basePath, 'lib/actions', 'dom-analyzer'), true);
