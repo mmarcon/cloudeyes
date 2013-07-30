@@ -56,7 +56,7 @@ describe('DOM Analizer', function(){
             expect(resultTargetObject.matched).toBe(false);
         });
     });
-    it('returns a rejected promise when selector matches', function(){
+    it('returns a fulfilled promise when selector matches', function(){
         var DOMAnalyzer = testutils.requireLocalModule('lib/actions/dom-analyzer');
         var html = '<html><body><div class="monkey"></div></body></html>';
         var targetObject = {
