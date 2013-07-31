@@ -58,7 +58,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-shell');
 
-    grunt.registerTask('test', ['jshint', 'jasmine_node']);
+    grunt.registerTask('test', ['jshint', 'jasmine_node', 'functional_tests']);
+    grunt.registerTask('unit', ['jshint', 'jasmine_node']);
+    grunt.registerTask('functional', ['jshint', 'functional_tests']);
     grunt.registerTask('webbuild', 'shell:websitebuild');
     grunt.registerTask('webdeploy', 'shell:website');
 };
