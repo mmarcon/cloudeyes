@@ -40,7 +40,18 @@ module.exports = function(grunt) {
                 ]
             },
             all: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js']
+        },
+        functional_tests: {
+            options: {
+                stdout: true
+            }
         }
+    });
+
+    grunt.registerTask('functional_tests', 'Runs Cloudeyes functional tests', function(){
+        var done = this.async();
+        var runner = require('./tests/functional/runner');
+        runner.run(done);
     });
 
     grunt.loadNpmTasks('grunt-jasmine-node');
