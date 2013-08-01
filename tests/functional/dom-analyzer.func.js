@@ -3,7 +3,7 @@ var Actions = require('../../lib/actions'),
     clc = require('cli-color'),
     Action = Actions.Action,
     HTTPAnalyzer = Actions.HTTPAnalyzer,
-    DOMAnalyzer = Actions.DOMAnalyzer
+    DOMAnalyzer = Actions.DOMAnalyzer,
     Q = require('q');
 
 var tests = [
