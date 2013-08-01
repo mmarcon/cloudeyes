@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         jasmine_node: {
-            specNameMatcher: "spec",
+            specNameMatcher: 'spec',
             projectRoot: ".",
             forceExit: true,
             captureExceptions: true,
@@ -59,8 +59,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-shell');
 
     grunt.registerTask('test', ['jshint', 'jasmine_node', 'functional_tests']);
-    grunt.registerTask('unit', ['jshint', 'jasmine_node']);
-    grunt.registerTask('functional', ['jshint', 'functional_tests']);
+    grunt.registerTask('unit', 'jasmine_node');
+    grunt.registerTask('functional', 'functional_tests');
     grunt.registerTask('webbuild', 'shell:websitebuild');
     grunt.registerTask('webdeploy', 'shell:website');
 };

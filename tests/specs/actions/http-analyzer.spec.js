@@ -8,7 +8,7 @@ describe('HTTP Analyzer', function(){
     var requestMock;
     beforeEach(function(){
         mockery.registerAllowable(path.join(config.basePath, 'lib/actions', 'dom-analyzer'), true);
-        mockery.registerAllowable(path.join(config.basePath, 'lib/actions', 'analyzer'), true);
+        mockery.registerAllowable(path.join(config.basePath, 'lib/actions', 'action'), true);
 
         requestMock = jasmine.createSpy('request');
     });
