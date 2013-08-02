@@ -51,15 +51,30 @@ describe('Message', function(){
             deferred: jasmine.any(Object)
         });
     });
+    it('puts data into a row, but does not reassign the deferred property', function(){
+        var r = new Report();
+
+        r.newRow('123-456');
+        r.ready();
+
+        r.newDataForRow('123-456', {
+            reachable: false,
+            deferred: 'monkey'
+        });
+
+        expect(r.rows[r.rowIndexes['123-456']]).toEqual({
+            uuid: '123-456',
+            reachable: false,
+            deferred: jasmine.any(Object)
+        });
+        expect(r.rows[r.rowIndexes['123-456']].deferred).not.toBe('monkey');
+    });
     it('resolves the promise when all rows are closed', function(){
-        var resolved = jasmine.createSpy('resolved');
         var r = new Report();
 
         r.newRow('123-456');
         r.newRow('789-abc');
         r.ready();
-
-        r.promise.done(resolved);
 
         r.newDataForRow('123-456', {
             reachable: false
@@ -72,7 +87,9 @@ describe('Message', function(){
         });
 
         r.closeRow('789-abc');
-
-        //expect(resolved).toHaveBeenCalledWith(r);
+        
+        r.promise.done(function(report){
+            expect(report).toBe(r);
+        });
     });
 });
