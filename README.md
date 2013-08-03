@@ -130,3 +130,5 @@ The best way to deploy nodes along with their configuration is to provide a `con
 Note that while this is a complete configuration and everything is required to bootstrap a MASTER node, **PROBES only need the** `key` **property**.
 
 All these messy manual steps will at some point hopefully go away and will be replaced with some sort of automated process.
+
+Enjoy :)
