@@ -1,4 +1,4 @@
-/*global describe, it, expect, jasmine, beforeEach, afterEach*/
+/*global describe, it, expect, jasmine, beforeEach, afterEach, spyOn*/
 var mockery = require('mockery'),
     path = require('path'),
     testutils = require('../testutils'),
@@ -85,5 +85,125 @@ describe('Eye', function(){
 
         eye.start();
         expect(Eye.prototype._start).toHaveBeenCalled();
+    });
+
+    it('acts when a command is received', function(){
+        mockery.registerAllowable(path.join(config.basePath, 'lib', 'actions', 'action'), true);
+        var Node = requireModule('lib/nodes/node');
+
+        var Action = requireModule('lib/actions');
+        //Return a fake promise, I don't need a real
+        //promise for the purpose of this test.
+        spyOn(Action.Action, 'with').andReturn({
+            then: function(){
+                return this;
+            },
+            done: function(){
+                return this;
+            }
+        });
+
+        var Eye = requireModule('lib/nodes/eye');
+
+        var eye = new Eye({
+            port: 3000,
+            debug: false,
+            key: '123-456',
+            region: 'asia'
+        });
+        //Prevents channel to actually do
+        //HTTP setup
+        eye._start = function(){};
+        eye.start();
+
+        eye.channel.emit(Events.COMMAND, {foo: 'bar'});
+        expect(Action.Action.with).toHaveBeenCalled();
+        Action.Action.with.reset();
+    });
+
+    it('notifies the master when everything is ok', function(){
+        mockery.registerAllowable(path.join(config.basePath, 'lib', 'actions', 'action'), true);
+
+        var Action = requireModule('lib/actions');
+
+        spyOn(Action, 'HTTPAnalyzer').andCallFake(Action.Noop);
+        spyOn(Action, 'DOMAnalyzer').andCallFake(Action.Noop);
+
+        var Eye = requireModule('lib/nodes/eye');
+        Eye.prototype.notifyMaster = jasmine.createSpy('notifyMaster');
+
+        var eye = new Eye({
+            port: 3000,
+            debug: false,
+            key: '123-456',
+            region: 'asia'
+        });
+        //Prevents channel to actually do
+        //HTTP setup
+        eye._start = function(){};
+        eye.start();
+
+        var fakeCommand = {
+            url: 'http://www.google.com',
+            selector: 'body',
+            master: {
+                host: 'master.cloudey.es',
+                port: 8080
+            },
+            reject: false //Configures `Noop` to always resolve
+        };
+
+        //This test is a little intricate
+        //Can't think of a better way though...
+        spyOn(eye.channel, 'on').andCallFake(function(event, callback){
+            var promise = callback(fakeCommand);
+            //`Noop` does nothing, so the same object should
+            //come back.
+            promise.then(function(){
+                expect(Eye.prototype.notifyMaster).toHaveBeenCalledWith(fakeCommand);
+            });
+        });
+    });
+    it('notifies the master even when something is not ok', function(){
+        mockery.registerAllowable(path.join(config.basePath, 'lib', 'actions', 'action'), true);
+
+        var Action = requireModule('lib/actions');
+        spyOn(Action, 'HTTPAnalyzer').andCallFake(Action.Noop);
+        spyOn(Action, 'DOMAnalyzer').andCallFake(Action.Noop);
+
+        var Eye = requireModule('lib/nodes/eye');
+        Eye.prototype.notifyMaster = jasmine.createSpy('notifyMaster');
+
+        var eye = new Eye({
+            port: 3000,
+            debug: false,
+            key: '123-456',
+            region: 'asia'
+        });
+        //Prevents channel to actually do
+        //HTTP setup
+        eye._start = function(){};
+        eye.start();
+
+        var fakeCommand = {
+            url: 'http://www.google.com',
+            selector: 'body',
+            master: {
+                host: 'master.cloudey.es',
+                port: 8080
+            },
+            reject: true //Configures `Noop` to always reject
+        };
+
+        //This test is a little intricate
+        //Can't think of a better way though...
+        spyOn(eye.channel, 'on').andCallFake(function(event, callback){
+            var promise = callback(fakeCommand);
+            //`Noop` does nothing, so the same object should
+            //come back.
+            promise.then(function(){
+                expect(Eye.prototype.notifyMaster).toHaveBeenCalledWith(fakeCommand);
+            });
+        });
     });
 });
