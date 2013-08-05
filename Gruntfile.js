@@ -33,10 +33,7 @@ module.exports = function(grunt) {
             options: {
                 jshintrc: '.jshintrc',
                 ignores: [
-                    'lib/master.js',
-                    'lib/node.js',
-                    'lib/probe.js',
-                    'lib/report.js'
+                    'lib/legacy/*.js',
                 ]
             },
             all: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js']
