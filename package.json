@@ -13,7 +13,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "start": "node deploy/appfog/app.js"
   },
   "repository": {
     "type": "git",

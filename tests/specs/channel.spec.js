@@ -272,7 +272,41 @@ describe('Channel', function(){
 
             var recipient = {
                 host: 'recipient.cloudey.es',
-                port: 80
+                port: 8000
+            };
+
+            var payload = {the: 'message'};
+
+            channelInstance.send(recipient, payload, 123);
+            expect(requestMock).toHaveBeenCalledWith({
+                uri: 'http://recipient.cloudey.es:8000',
+                json: Message.message(payload, 'kick-ass-test', 123)
+            }, jasmine.any(Function));
+        });
+
+        it('sends messages using default ports', function(){
+            mockery.registerAllowable('events', true);
+            mockery.registerAllowable('util', true);
+            mockery.registerAllowable('connect', true);
+
+            mockery.registerMock('request', requestMock);
+            mockery.enable({
+                useCleanCache: true,
+                warnOnUnregistered: false
+            });
+
+            var channel = requireModule('lib/channel'),
+                Message = requireModule('lib/message');
+
+            var channelInstance = channel.getChannel('HTTP', {
+                port: 1234,
+                key: 'kick-ass-test',
+                alwaysUseDefaultPorts: true
+            });
+
+            var recipient = {
+                host: 'recipient.cloudey.es',
+                port: 8000
             };
 
             var payload = {the: 'message'};
@@ -305,7 +339,41 @@ describe('Channel', function(){
 
             var recipient = {
                 host: 'recipient.cloudey.es',
-                port: 80
+                port: 8000
+            };
+
+            var payload = {the: 'command'};
+
+            channelInstance.sendCommand(recipient, payload, 123);
+            expect(requestMock).toHaveBeenCalledWith({
+                uri: 'http://recipient.cloudey.es:8000',
+                json: Message.command(payload, 'kick-ass-test', 123)
+            }, jasmine.any(Function));
+        });
+
+        it('sends commands using default ports', function(){
+            mockery.registerAllowable('events', true);
+            mockery.registerAllowable('util', true);
+            mockery.registerAllowable('connect', true);
+
+            mockery.registerMock('request', requestMock);
+            mockery.enable({
+                useCleanCache: true,
+                warnOnUnregistered: false
+            });
+
+            var channel = requireModule('lib/channel'),
+                Message = requireModule('lib/message');
+
+            var channelInstance = channel.getChannel('HTTP', {
+                port: 1234,
+                key: 'kick-ass-test',
+                alwaysUseDefaultPorts: true
+            });
+
+            var recipient = {
+                host: 'recipient.cloudey.es',
+                port: 8000
             };
 
             var payload = {the: 'command'};
