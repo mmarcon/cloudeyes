@@ -4,6 +4,7 @@ var Eye = require('../../lib/nodes/eye');
 var HOST = process.env.VCAP_APP_HOST,
     PORT = process.env.VCAP_APP_PORT,
     NODE_TYPE = process.env.NODE_TYPE,
+    REGION = process.env.REGION,
     KEY = process.env.KEY;
 
 if(NODE_TYPE === 'master') {
@@ -16,6 +17,7 @@ else {
         debug: false,
         port: PORT,
         key: KEY,
+        region: REGION,
         alwaysUseDefaultPorts: true
     });
     Eye.start();

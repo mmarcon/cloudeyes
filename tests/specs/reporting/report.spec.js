@@ -70,7 +70,8 @@ describe('Message', function(){
         expect(r.rows[r.rowIndexes['123-456']].deferred).not.toBe('monkey');
     });
     it('resolves the promise when all rows are closed', function(){
-        var r = new Report();
+        var r = new Report(),
+            now = Date.now();
 
         r.newRow('123-456');
         r.newRow('789-abc');
@@ -87,9 +88,11 @@ describe('Message', function(){
         });
 
         r.closeRow('789-abc');
-        
+
         r.promise.done(function(report){
             expect(report).toBe(r);
+            expect(report.timestamp).toEqual(jasmine.any(Number));
+            expect(report.timestamp).toBeGreaterThan(now);
         });
     });
 });
