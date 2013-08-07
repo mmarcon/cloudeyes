@@ -1,6 +1,14 @@
 var setup = require('./setup.json'),
     CLIExecutor = require('../utils/cli-executor');
 
+//TODO:
+//
+// * add CLI parameters:
+//   1. --skip-env
+//   2. --master
+//   3. --eyes
+//   4. -node <name>
+
 var COMMANDS = {
     main: 'af',
     env: function(app, variable, value){
@@ -16,23 +24,10 @@ var executor = new CLIExecutor();
 var key = setup.key;
 
 //Setup the master first
-// var master = setup.master;
-// exec(COMMANDS.env(master.name, 'NODE_TYPE', 'master'), function(error, stdout, stderr){
-//     var std = stdout || stderr;
-//     console.log(std);
-// });
-// exec(COMMANDS.env(master.name, 'KEY', key), function(error, stdout, stderr){
-//     var std = stdout || stderr;
-//     console.log(std);
-// });
-// exec(COMMANDS.env(master.name, 'KEY', key), function(error, stdout, stderr){
-//     var std = stdout || stderr;
-//     console.log(std);
-// });
-// exec(COMMANDS.update(master.name), {cwd: '..'}, function(error, stdout, stderr){
-//     var std = stdout || stderr;
-//     console.log(std);
-// });
+var master = setup.master;
+executor.exec(COMMANDS.env(master.name, 'NODE_TYPE', 'master'));
+executor.exec(COMMANDS.env(master.name, 'KEY', key));
+executor.exec(COMMANDS.update(master.name), {cwd: '../..'});
 
 //Now the eyes
 var eyes = setup.eyes;

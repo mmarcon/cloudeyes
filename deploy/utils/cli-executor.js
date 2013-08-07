@@ -1,13 +1,13 @@
 var spawn = require('child_process').spawn,
     Q = require('q');
-    
+
 function printout(data){
     console.log(data.toString('utf8'));
 }
 
 function CLIExecutor(){
     this.queue = [];
-};
+}
 
 CLIExecutor.prototype.exec = function(command, options){
     this.queue.push({
@@ -25,7 +25,7 @@ CLIExecutor.prototype.start = function(ondone, onerror){
             var process = spawn(t.command, [], t.options || {});
             process.stdout.on('data', printout);
             process.stderr.on('data', printout);
-            process.on('exit', function(code, signal){
+            process.on('exit', function(code){
                 if(code === 0) {
                     return deferred.resolve();
                 }

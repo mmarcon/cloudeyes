@@ -36,7 +36,7 @@ module.exports = function(grunt) {
                     'lib/legacy/*.js',
                 ]
             },
-            all: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js']
+            all: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js', 'deploy/**/*.js']
         },
         functional_tests: {
             options: {
