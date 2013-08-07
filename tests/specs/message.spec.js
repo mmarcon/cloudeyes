@@ -16,7 +16,7 @@ describe('Message', function(){
     it('creates NACK message', function(){
         var message = Message.NACK('Something is wrong');
         expect(message).toEqual({
-            status: 1,
+            status: 0,
             type: 'NACK',
             data: 'Something is wrong'
         });
