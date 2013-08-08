@@ -279,6 +279,7 @@ describe('Channel', function(){
 
             channelInstance.send(recipient, payload, 123);
             expect(requestMock).toHaveBeenCalledWith({
+                method: 'POST',
                 uri: 'http://recipient.cloudey.es:8000',
                 json: Message.message(payload, 'kick-ass-test', 123)
             }, jasmine.any(Function));
@@ -313,6 +314,7 @@ describe('Channel', function(){
 
             channelInstance.send(recipient, payload, 123);
             expect(requestMock).toHaveBeenCalledWith({
+                method: 'POST',
                 uri: 'http://recipient.cloudey.es:80',
                 json: Message.message(payload, 'kick-ass-test', 123)
             }, jasmine.any(Function));
@@ -346,6 +348,7 @@ describe('Channel', function(){
 
             channelInstance.sendCommand(recipient, payload, 123);
             expect(requestMock).toHaveBeenCalledWith({
+                method: 'POST',
                 uri: 'http://recipient.cloudey.es:8000',
                 json: Message.command(payload, 'kick-ass-test', 123)
             }, jasmine.any(Function));
@@ -380,6 +383,7 @@ describe('Channel', function(){
 
             channelInstance.sendCommand(recipient, payload, 123);
             expect(requestMock).toHaveBeenCalledWith({
+                method: 'POST',
                 uri: 'http://recipient.cloudey.es:80',
                 json: Message.command(payload, 'kick-ass-test', 123)
             }, jasmine.any(Function));
