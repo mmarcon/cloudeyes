@@ -1,0 +1,35 @@
+{
+    "endpoint": {
+        "host": "cloudeyes-master.eu01.aws.af.cm",
+        "port": 80
+    },
+    "hosts": [
+        {
+            "url": "http://beyondpasta.com",
+            "selector": "#footer"
+        },
+        {
+            "url": "http://marcon.me",
+            "selector": "h2.resume-section"
+        },
+        {
+            "url": "http://cloudey.es",
+            "selector": "header h1"
+        }
+    ],
+    "eyes": [
+        {
+            "id":"cloudeyes-europe",
+            "host": "cloudeyes-europe.eu01.aws.af.cm",
+            "port": 80
+        },
+        {
+            "id":"cloudeyes-us",
+            "host": "cloudeyes-us.aws.af.cm",
+            "port": 80
+        }
+    ],
+    "recipients": [
+        "max@cloudey.es"
+    ]
+}

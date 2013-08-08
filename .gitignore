@@ -4,4 +4,4 @@ node_modules
 website/app/bower_components
 .DS_Store
 .c9revisions
-setup.json
+cloud.json
