@@ -15,7 +15,8 @@ if(NODE_TYPE === 'master') {
         hosts: config.hosts,
         me: config.endpoint,
         port: PORT, //Port we listen to is not necessarily the port where we can be reached at
-        key: KEY
+        key: KEY,
+        time: config.time //For Cron
     });
 }
 else {

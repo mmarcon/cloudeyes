@@ -34,7 +34,7 @@ var testFn = function(test) {
     });
 
     return deferred.promise;
-}
+};
 
 //@TODO:
 //This run method is probably boilerplate
@@ -59,4 +59,4 @@ function run(){
 
 module.exports = {
     run: run
-}
+};

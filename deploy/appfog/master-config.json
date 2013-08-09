@@ -5,10 +5,6 @@
     },
     "hosts": [
         {
-            "url": "http://beyondpasta.com",
-            "selector": "#footer"
-        },
-        {
             "url": "http://marcon.me",
             "selector": "h2.resume-section"
         },
@@ -17,6 +13,7 @@
             "selector": "header h1"
         }
     ],
+    "time": "0 */30 * * * *",
     "eyes": [
         {
             "id":"cloudeyes-europe",

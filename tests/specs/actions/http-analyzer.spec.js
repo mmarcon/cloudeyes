@@ -28,7 +28,10 @@ describe('HTTP Analyzer', function(){
 
         HTTPAnalyzer({url: 'http://google.com'});
 
-        expect(requestMock).toHaveBeenCalledWith({uri: 'http://google.com'}, jasmine.any(Function));
+        expect(requestMock).toHaveBeenCalledWith({
+            uri: 'http://google.com',
+            headers: {'User-Agent': jasmine.any(String)}
+        }, jasmine.any(Function));
     });
 
     it('resolves the promise when request succeeds', function(){
