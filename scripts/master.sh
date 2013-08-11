@@ -1,2 +1,2 @@
 #!/bin/bash
-PORT=3000 HOST=localhost nodemon ../deploy/localhost/app.js
+PORT=3000 NODE_TYPE="master" KEY="development" nodemon ../deploy/localhost/app.js

@@ -1,0 +1,32 @@
+{
+    "endpoint": {
+        "host": "localhost",
+        "port": 3000
+    },
+    "hosts": [
+        {
+            "url": "http://marcon.me",
+            "selector": "h2.resume-section"
+        },
+        {
+            "url": "http://cloudey.es",
+            "selector": "header h1"
+        }
+    ],
+    "time": "0 */1 * * * *",
+    "eyes": [
+        {
+            "id":"cloudeyes-europe",
+            "host": "localhost",
+            "port": 3001
+        },
+        {
+            "id":"cloudeyes-us",
+            "host": "localhost",
+            "port": 3002
+        }
+    ],
+    "recipients": [
+        "max@cloudey.es"
+    ]
+}

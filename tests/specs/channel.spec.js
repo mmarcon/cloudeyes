@@ -510,7 +510,8 @@ describe('Channel', function(){
 
             var recipient = {
                 host: 'recipient.cloudey.es',
-                port: 80
+                port: 80,
+                id: 'recipient-id'
             };
 
             var payload = {the: 'message'};
@@ -527,7 +528,10 @@ describe('Channel', function(){
 
             channelInstance.send(recipient, payload, 123);
 
-            expect(onERROR).toHaveBeenCalledWith(null);
+            expect(onERROR).toHaveBeenCalledWith({
+                uuid: 123,
+                recipient: 'recipient-id'
+            });
         });
 
         it('notifies sender when command is sent successfully (ACK)', function(){
@@ -651,7 +655,8 @@ describe('Channel', function(){
 
             var recipient = {
                 host: 'recipient.cloudey.es',
-                port: 80
+                port: 80,
+                id: 'recipient-id'
             };
 
             var payload = {the: 'command'};
@@ -668,7 +673,10 @@ describe('Channel', function(){
 
             channelInstance.sendCommand(recipient, payload, 123);
 
-            expect(onERROR).toHaveBeenCalledWith(null);
+            expect(onERROR).toHaveBeenCalledWith({
+                uuid: 123,
+                recipient: 'recipient-id'
+            });
         });
     });
 });

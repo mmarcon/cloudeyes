@@ -1,11 +1,14 @@
-/*global describe, it, expect*/
+/*global describe, it, expect, jasmine, beforeEach, afterEach*/
 var testutils = require('../testutils');
+var Action = testutils.requireLocalModule('lib/actions/action');
 
-describe('Action', function(){
+describe('Report Formatter Action', function(){
     it('returns a fulfilled promise and calls then with the target object', function(){
-        var Action = testutils.requireLocalModule('lib/actions/action');
+        var ReportFormatter = testutils.requireLocalModule('lib/actions/report-formatter');
         var targetObject = {
-            foo: 'bar'
+            report: {
+
+            }
         };
 
         var promise = Action.with(targetObject);

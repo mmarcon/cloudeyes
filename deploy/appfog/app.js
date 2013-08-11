@@ -16,6 +16,7 @@ if(NODE_TYPE === 'master') {
         me: config.endpoint,
         port: PORT, //Port we listen to is not necessarily the port where we can be reached at
         key: KEY,
+        alwaysUseDefaultPorts: true,
         time: config.time //For Cron
     });
 }

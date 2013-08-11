@@ -1,7 +1,7 @@
 /*global describe, it, expect*/
-var testutils = require('./testutils');
+var testutils = require('../testutils');
 
-var ReportFormatter = testutils.requireLocalModule('lib/report-formatter');
+var ReportFormatter = testutils.requireLocalModule('lib/reporting/report-formatter');
 
 var report = {
     "edcb1c04-de4f-cc24-7a67-7fe187d82832": {
